@@ -2,6 +2,7 @@ import type {ReactNode} from "react";
 import {hasLocale, NextIntlClientProvider} from "next-intl";
 import {notFound} from "next/navigation";
 import {getMessages, getTranslations, setRequestLocale} from "next-intl/server";
+import {Be_Vietnam_Pro, Literata} from "next/font/google";
 import {SiteFooter} from "@/components/layout/site-footer";
 import {SiteHeader} from "@/components/layout/site-header";
 import {SkipLink} from "@/components/layout/skip-link";
@@ -9,6 +10,22 @@ import {getLocalePath, locales, type Locale} from "@/i18n/locale";
 import {routing} from "@/i18n/routing";
 import {getContentRepository} from "@/lib/content";
 import "../globals.css";
+
+const interfaceFont = Be_Vietnam_Pro({
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin", "vietnamese"],
+  display: "swap",
+  variable: "--font-interface"
+});
+
+const readingFont = Literata({
+  weight: "variable",
+  style: ["normal", "italic"],
+  subsets: ["latin", "vietnamese"],
+  display: "swap",
+  variable: "--font-reading"
+});
 
 export function generateStaticParams() {
   return locales.map((locale) => ({locale}));
@@ -38,7 +55,7 @@ export default async function LocaleRootLayout({
 
   return (
     <html lang={locale}>
-      <body>
+      <body className={`${interfaceFont.variable} ${readingFont.variable}`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <SkipLink label={accessibility("skipToContent")} />
           <SiteHeader
