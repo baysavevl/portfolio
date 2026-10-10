@@ -1,3 +1,4 @@
+import type {Metadata} from "next";
 import type {ReactNode} from "react";
 import {hasLocale, NextIntlClientProvider} from "next-intl";
 import {notFound} from "next/navigation";
@@ -9,7 +10,12 @@ import {LocaleSwitchProvider} from "@/components/layout/locale-switch-context";
 import {getLocalePath, locales, type Locale} from "@/i18n/locale";
 import {routing} from "@/i18n/routing";
 import {getContentRepository} from "@/lib/content";
+import {getSiteUrl} from "@/lib/seo/metadata";
 import "../globals.css";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl())
+};
 
 export function generateStaticParams() {
   return locales.map((locale) => ({locale}));
