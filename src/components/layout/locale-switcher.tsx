@@ -1,13 +1,14 @@
 "use client";
 
 import NextLink from "next/link";
+import {useLocaleSwitchTarget} from "@/components/layout/locale-switch-context";
 import {localeCookieName, type Locale} from "@/i18n/locale";
 
 interface LocaleSwitcherProps {
-  currentLocale: Locale;
-  targetLocale: Locale;
-  targetHref: string;
-  missingTranslation: boolean;
+  currentLocale?: Locale;
+  targetLocale?: Locale;
+  targetHref?: string;
+  missingTranslation?: boolean;
 }
 
 export function LocaleSwitcher({
@@ -15,23 +16,49 @@ export function LocaleSwitcher({
   targetLocale,
   targetHref,
   missingTranslation
-}: LocaleSwitcherProps) {
+}: LocaleSwitcherProps = {}) {
+  const contextTarget = useLocaleSwitchTarget();
+  const resolvedTarget =
+    currentLocale && targetLocale && targetHref
+      ? {
+          currentLocale,
+          targetLocale,
+          targetHref,
+          missingTranslation: missingTranslation ?? false
+        }
+      : contextTarget;
+
+  if (!resolvedTarget) {
+    throw new Error(
+      "LocaleSwitcher requires explicit target props or LocaleSwitchProvider"
+    );
+  }
+
+  const {
+    currentLocale: resolvedCurrentLocale,
+    targetLocale: resolvedTargetLocale,
+    targetHref: resolvedTargetHref,
+    missingTranslation: resolvedMissingTranslation
+  } = resolvedTarget;
+
   function rememberLocale() {
-    document.cookie = `${localeCookieName}=${targetLocale}; Path=/; Max-Age=31536000; SameSite=Lax`;
+    document.cookie = `${localeCookieName}=${resolvedTargetLocale}; Path=/; Max-Age=31536000; SameSite=Lax`;
   }
 
   return (
     <NextLink
-      href={targetHref}
-      hrefLang={targetLocale}
-      lang={targetLocale}
-      aria-label={targetLocale.toUpperCase()}
-      data-current-locale={currentLocale}
-      data-missing-translation={missingTranslation ? "true" : "false"}
+      href={resolvedTargetHref}
+      hrefLang={resolvedTargetLocale}
+      lang={resolvedTargetLocale}
+      aria-label={resolvedTargetLocale.toUpperCase()}
+      data-current-locale={resolvedCurrentLocale}
+      data-missing-translation={
+        resolvedMissingTranslation ? "true" : "false"
+      }
       onClick={rememberLocale}
       className="locale-switcher"
     >
-      {targetLocale.toUpperCase()}
+      {resolvedTargetLocale.toUpperCase()}
     </NextLink>
   );
 }

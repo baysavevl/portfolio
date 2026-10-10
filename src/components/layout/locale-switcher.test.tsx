@@ -1,8 +1,12 @@
-import {render, screen} from "@testing-library/react";
+import {render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type {ComponentProps} from "react";
 import {describe, expect, it, vi} from "vitest";
 import {LocaleSwitcher} from "@/components/layout/locale-switcher";
+import {
+  LocaleSwitchProvider,
+  LocaleSwitchTarget
+} from "@/components/layout/locale-switch-context";
 
 vi.mock("next/link", () => ({
   default: ({
@@ -46,5 +50,35 @@ describe("LocaleSwitcher", () => {
     await user.click(vietnamese);
 
     expect(document.cookie).toContain("vincent-locale=vi");
+  });
+
+  it("lets a content page replace the shell's default destination", async () => {
+    const articleTarget = {
+      currentLocale: "en" as const,
+      targetLocale: "vi" as const,
+      targetHref: "/vi/writing/ro-rang-truoc-toc-do",
+      missingTranslation: false
+    };
+
+    render(
+      <LocaleSwitchProvider
+        initialTarget={{
+          currentLocale: "en",
+          targetLocale: "vi",
+          targetHref: "/vi",
+          missingTranslation: false
+        }}
+      >
+        <LocaleSwitcher />
+        <LocaleSwitchTarget target={articleTarget} />
+      </LocaleSwitchProvider>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByRole("link", {name: "VI"})).toHaveAttribute(
+        "href",
+        articleTarget.targetHref
+      );
+    });
   });
 });

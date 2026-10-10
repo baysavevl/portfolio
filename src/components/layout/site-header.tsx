@@ -6,17 +6,9 @@ import {MobileMenu} from "@/components/layout/mobile-menu";
 
 interface SiteHeaderProps {
   currentLocale: Locale;
-  targetLocale: Locale;
-  targetHref: string;
-  missingTranslation?: boolean;
 }
 
-export async function SiteHeader({
-  currentLocale,
-  targetLocale,
-  targetHref,
-  missingTranslation = false
-}: SiteHeaderProps) {
+export async function SiteHeader({currentLocale}: SiteHeaderProps) {
   const [navigation, accessibility] = await Promise.all([
     getTranslations({locale: currentLocale, namespace: "nav"}),
     getTranslations({locale: currentLocale, namespace: "accessibility"})
@@ -57,12 +49,7 @@ export async function SiteHeader({
         </nav>
 
         <div className="site-header__actions">
-          <LocaleSwitcher
-            currentLocale={currentLocale}
-            targetLocale={targetLocale}
-            targetHref={targetHref}
-            missingTranslation={missingTranslation}
-          />
+          <LocaleSwitcher />
           <MobileMenu
             locale={currentLocale}
             items={items}
