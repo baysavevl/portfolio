@@ -1,4 +1,5 @@
 import {z} from "zod";
+import {isSafeHref} from "@/lib/content/link";
 import type {
   HomeData,
   Post,
@@ -25,19 +26,8 @@ const seoFieldsSchema = z
   })
   .strict();
 
-const safeRichTextHrefSchema = z.string().refine(
-  (href) => {
-    if (href.startsWith("/")) {
-      return !href.startsWith("//");
-    }
-
-    try {
-      const url = new URL(href);
-      return url.protocol === "https:" || url.protocol === "mailto:";
-    } catch {
-      return false;
-    }
-  },
+const safeHrefSchema = z.string().refine(
+  isSafeHref,
   {message: "Link must use https:, mailto:, or a root-relative path"}
 );
 
@@ -54,7 +44,7 @@ const richTextMarkDefSchema = z
   .object({
     _key: nonEmptyStringSchema,
     _type: z.literal("link"),
-    href: safeRichTextHrefSchema
+    href: safeHrefSchema
   })
   .strict();
 
@@ -179,7 +169,7 @@ export const resumeSchema: z.ZodType<Resume> = z
 const publicLinkSchema = z
   .object({
     label: nonEmptyStringSchema,
-    href: z.string().url()
+    href: safeHrefSchema
   })
   .strict();
 

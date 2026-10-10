@@ -1,6 +1,11 @@
+import {documentInternationalization} from "@sanity/document-internationalization";
 import {defineConfig} from "sanity";
 import {structureTool} from "sanity/structure";
+import {visionTool} from "@sanity/vision";
 import {readPublicSanityEnv} from "./src/sanity/env/public";
+import {documentInternationalizationConfig} from "./src/sanity/i18n";
+import {schemaTypes} from "./src/sanity/schemaTypes";
+import {structure} from "./src/sanity/structure";
 
 const publicEnvironment = readPublicSanityEnv();
 const environment = publicEnvironment.success
@@ -17,8 +22,14 @@ export default defineConfig({
   basePath: "/studio",
   projectId: environment.projectId,
   dataset: environment.dataset,
-  plugins: [structureTool()],
+  plugins: [
+    structureTool({structure}),
+    documentInternationalization(documentInternationalizationConfig),
+    ...(process.env.NODE_ENV === "production"
+      ? []
+      : [visionTool({defaultApiVersion: environment.apiVersion})])
+  ],
   schema: {
-    types: []
+    types: schemaTypes
   }
 });

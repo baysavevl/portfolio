@@ -1,5 +1,6 @@
 import {PortableText, type PortableTextComponents} from "@portabletext/react";
 import {getTableOfContentsItems} from "@/components/writing/table-of-contents";
+import {isSafeHref} from "@/lib/content/link";
 import type {RichTextBlock} from "@/lib/content/types";
 
 interface ArticleBodyProps {
@@ -9,19 +10,6 @@ interface ArticleBodyProps {
 function reportUnsupported(kind: "block" | "mark" | "type", name?: string) {
   if (process.env.NODE_ENV !== "production") {
     console.warn(`Unsupported Portable Text ${kind}: ${name ?? "unknown"}`);
-  }
-}
-
-function isSafeHref(href: string): boolean {
-  if (href.startsWith("/")) {
-    return !href.startsWith("//");
-  }
-
-  try {
-    const url = new URL(href);
-    return url.protocol === "https:" || url.protocol === "mailto:";
-  } catch {
-    return false;
   }
 }
 
