@@ -6,7 +6,10 @@ import {HomeView} from "@/components/home/home-view";
 import {JsonLd} from "@/components/seo/json-ld";
 import {getLocalePath, type Locale} from "@/i18n/locale";
 import {routing} from "@/i18n/routing";
-import {getContentRepository} from "@/lib/content";
+import {
+  getContentRepository,
+  getPublishedContentRepository
+} from "@/lib/content";
 import {buildPageMetadata, getSiteUrl} from "@/lib/seo/metadata";
 import {
   buildPersonJsonLd,
@@ -26,7 +29,7 @@ export async function generateMetadata({
     notFound();
   }
 
-  const settings = await getContentRepository().getSettings(locale);
+  const settings = await getPublishedContentRepository().getSettings(locale);
   const targetLocale: Locale = locale === "en" ? "vi" : "en";
 
   return buildPageMetadata({

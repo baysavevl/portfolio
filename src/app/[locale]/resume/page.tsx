@@ -7,7 +7,10 @@ import viMessages from "../../../../messages/vi.json";
 import {ResumeView} from "@/components/resume/resume-view";
 import {getLocalePath, type Locale} from "@/i18n/locale";
 import {routing} from "@/i18n/routing";
-import {getContentRepository} from "@/lib/content";
+import {
+  getContentRepository,
+  getPublishedContentRepository
+} from "@/lib/content";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
 type ResumePageProps = {
@@ -23,7 +26,7 @@ export async function generateMetadata({
     notFound();
   }
 
-  const resume = await getContentRepository().getResume(locale);
+  const resume = await getPublishedContentRepository().getResume(locale);
   const messages = locale === "vi" ? viMessages : enMessages;
   const targetLocale: Locale = locale === "en" ? "vi" : "en";
 

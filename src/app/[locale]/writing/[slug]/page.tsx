@@ -6,9 +6,12 @@ import enMessages from "../../../../../messages/en.json";
 import viMessages from "../../../../../messages/vi.json";
 import {JsonLd} from "@/components/seo/json-ld";
 import {ArticleView} from "@/components/writing/article-view";
-import {getLocalePath, locales, type Locale} from "@/i18n/locale";
+import {getLocalePath, type Locale} from "@/i18n/locale";
 import {routing} from "@/i18n/routing";
-import {getContentRepository} from "@/lib/content";
+import {
+  getContentRepository,
+  getPublishedContentRepository
+} from "@/lib/content";
 import {resolveLocaleSwitch} from "@/lib/content/translation";
 import {buildPageMetadata, getSiteUrl} from "@/lib/seo/metadata";
 import {
@@ -20,20 +23,6 @@ type ArticlePageProps = {
   params: Promise<{locale: string; slug: string}>;
 };
 
-export async function generateStaticParams() {
-  const repository = getContentRepository();
-  const localizedPosts = await Promise.all(
-    locales.map(async (locale) => ({
-      locale,
-      posts: await repository.listPosts(locale)
-    }))
-  );
-
-  return localizedPosts.flatMap(({locale, posts}) =>
-    posts.map((post) => ({locale, slug: post.slug}))
-  );
-}
-
 export async function generateMetadata({
   params
 }: ArticlePageProps): Promise<Metadata> {
@@ -43,11 +32,18 @@ export async function generateMetadata({
     notFound();
   }
 
-  const repository = getContentRepository();
+  const repository = getPublishedContentRepository();
   const post = await repository.getPost(locale, slug);
 
   if (!post) {
-    notFound();
+    const messages = locale === "vi" ? viMessages : enMessages;
+
+    return buildPageMetadata({
+      title: `${messages.writing.title} — Vincent Luu`,
+      description: messages.writing.description,
+      locale,
+      pathname: getLocalePath(locale, "writing", slug)
+    });
   }
 
   const targetLocale: Locale = locale === "en" ? "vi" : "en";

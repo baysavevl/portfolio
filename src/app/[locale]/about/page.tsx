@@ -7,7 +7,10 @@ import viMessages from "../../../../messages/vi.json";
 import {AboutView} from "@/components/about/about-view";
 import {getLocalePath, type Locale} from "@/i18n/locale";
 import {routing} from "@/i18n/routing";
-import {getContentRepository} from "@/lib/content";
+import {
+  getContentRepository,
+  getPublishedContentRepository
+} from "@/lib/content";
 import {buildPageMetadata} from "@/lib/seo/metadata";
 
 type AboutPageProps = {
@@ -23,7 +26,7 @@ export async function generateMetadata({
     notFound();
   }
 
-  const profile = await getContentRepository().getProfile(locale);
+  const profile = await getPublishedContentRepository().getProfile(locale);
   const messages = locale === "vi" ? viMessages : enMessages;
   const targetLocale: Locale = locale === "en" ? "vi" : "en";
 

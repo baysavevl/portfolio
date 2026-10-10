@@ -1,5 +1,5 @@
 import type {MetadataRoute} from "next";
-import {getContentRepository} from "@/lib/content";
+import {getPublishedContentRepository} from "@/lib/content";
 import {locales, type Locale, type PublicSection} from "@/i18n/locale";
 import {absoluteUrl, getSiteUrl} from "@/lib/seo/metadata";
 import type {PostSummary, ProjectSummary} from "@/lib/content/types";
@@ -56,7 +56,7 @@ function contentAlternates<T extends PostSummary | ProjectSummary>(
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const repository = getContentRepository();
+  const repository = getPublishedContentRepository();
   const siteUrl = getSiteUrl();
   const [englishPosts, vietnamesePosts, englishProjects, vietnameseProjects] =
     await Promise.all([

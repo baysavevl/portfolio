@@ -1,7 +1,7 @@
 import enMessages from "../../../../messages/en.json";
 import viMessages from "../../../../messages/vi.json";
 import {isLocale, locales} from "@/i18n/locale";
-import {getContentRepository} from "@/lib/content";
+import {getPublishedContentRepository} from "@/lib/content";
 import {getSiteUrl} from "@/lib/seo/metadata";
 import {buildRssXml} from "@/lib/seo/rss";
 
@@ -19,7 +19,7 @@ export async function GET(
     return new Response("Not found", {status: 404});
   }
 
-  const repository = getContentRepository();
+  const repository = getPublishedContentRepository();
   const [posts, settings] = await Promise.all([
     repository.listPosts(locale),
     repository.getSettings(locale)
