@@ -2,13 +2,19 @@ import {defineConfig, devices} from "@playwright/test";
 
 export default defineConfig({
   testDir: "./tests/e2e",
+  outputDir: "artifacts/playwright/test-results",
   fullyParallel: true,
+  workers: process.env.CI ? 2 : 4,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 2 : 0,
-  reporter: "html",
+  reporter: [
+    ["list"],
+    ["html", {outputFolder: "artifacts/playwright/report", open: "never"}]
+  ],
   use: {
-    baseURL: "http://127.0.0.1:3000",
-    trace: "on-first-retry"
+    baseURL: "http://127.0.0.1:3101",
+    trace: "on-first-retry",
+    screenshot: "only-on-failure"
   },
   projects: [
     {
@@ -17,8 +23,10 @@ export default defineConfig({
     }
   ],
   webServer: {
-    command: "npm run dev",
-    url: "http://127.0.0.1:3000/en",
+    command:
+      "npm run build && E2E_FIXTURES=1 npm run start -- --hostname 127.0.0.1 --port 3101",
+    url: "http://127.0.0.1:3101/en",
+    timeout: 120_000,
     reuseExistingServer: !process.env.CI
   }
 });
