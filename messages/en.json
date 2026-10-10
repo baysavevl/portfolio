@@ -1,0 +1,108 @@
+{
+  "nav": {
+    "home": "Home",
+    "work": "Work",
+    "writing": "Writing",
+    "about": "About",
+    "resume": "Résumé",
+    "menu": "Open navigation",
+    "closeMenu": "Close navigation"
+  },
+  "hero": {
+    "operator": "Operator",
+    "observer": "Observer",
+    "rangeLabel": "Reveal Operator or Observer",
+    "operatorAlt": "Abstract Operator silhouette",
+    "observerAlt": "Abstract Observer silhouette",
+    "splitAlt": "Abstract Operator and Observer silhouette",
+    "writingAction": "Read the field notes",
+    "workAction": "Explore selected work"
+  },
+  "home": {
+    "latestFieldNote": "Latest field note",
+    "currentQuestions": "Current questions",
+    "selectedWork": "Selected work",
+    "careerPreview": "Professional journey",
+    "principles": "Working principles",
+    "contact": "Continue the conversation",
+    "readArticle": "Read {title}",
+    "viewProject": "View {title}"
+  },
+  "demo": {
+    "label": "Demonstration content"
+  },
+  "writing": {
+    "title": "Writing",
+    "description": "Field notes on building, leading, learning, and paying attention.",
+    "featured": "Featured",
+    "allNotes": "All field notes",
+    "readingTime": "{minutes, plural, one {# min read} other {# min read}}",
+    "publishedOn": "Published {date}",
+    "related": "Related field notes",
+    "back": "Back to Writing",
+    "empty": "No published field notes are available in this language yet.",
+    "tableOfContents": "In this note"
+  },
+  "work": {
+    "title": "Work",
+    "description": "Selected demonstration case studies told through decisions and reflection.",
+    "context": "Context",
+    "role": "Role",
+    "decisions": "Key decisions",
+    "outcome": "Outcome",
+    "reflection": "Reflection",
+    "back": "Back to Work",
+    "empty": "Case studies will appear here once their details are ready to share.",
+    "writingLink": "Browse Writing instead"
+  },
+  "about": {
+    "title": "About",
+    "principles": "Working principles",
+    "questions": "Questions in progress",
+    "mindfulBuilding": "What mindful building means",
+    "mindfulBuildingCopy": "Demonstration copy: mindful building joins clear decisions with enough attention to notice their human cost and long-term effect."
+  },
+  "resume": {
+    "title": "Résumé",
+    "summary": "Summary",
+    "experience": "Experience",
+    "education": "Education",
+    "capabilities": "Capabilities",
+    "download": "Download {label}",
+    "effectiveDate": "Effective {date}",
+    "empty": "Verified professional history has not yet been supplied."
+  },
+  "search": {
+    "label": "Search Writing",
+    "placeholder": "Search field notes",
+    "allTopics": "All topics",
+    "results": "{count, plural, one {# result} other {# results}}",
+    "noResults": "No field notes match the active filters.",
+    "activeFilters": "Active filters: {filters}",
+    "reset": "Reset filters"
+  },
+  "translation": {
+    "unavailable": "This entry is not available in the selected language.",
+    "backToCollection": "Browse available entries"
+  },
+  "errors": {
+    "notFoundTitle": "This page is not in the field notes",
+    "notFoundDescription": "The address may have changed, or this entry may not exist in the selected language.",
+    "runtimeTitle": "Something interrupted the page",
+    "runtimeDescription": "Please try again. No private diagnostic details are shown here.",
+    "tryAgain": "Try again",
+    "home": "Go home",
+    "writing": "Browse Writing",
+    "work": "Browse Work"
+  },
+  "footer": {
+    "brandLine": "Vincent Luu — The Mindful Builder"
+  },
+  "accessibility": {
+    "skipToContent": "Skip to main content",
+    "mainNavigation": "Primary navigation",
+    "mobileNavigation": "Mobile navigation",
+    "localeSwitcher": "Language",
+    "translationUnavailable": "Translation unavailable"
+  }
+}

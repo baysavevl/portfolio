@@ -2,6 +2,13 @@ export const locales = ["en", "vi"] as const;
 
 export type Locale = (typeof locales)[number];
 
+export type PublicSection =
+  | "home"
+  | "writing"
+  | "work"
+  | "about"
+  | "resume";
+
 export const defaultLocale: Locale = "en";
 export const localeCookieName = "vincent-locale";
 
@@ -11,4 +18,15 @@ export function isLocale(value: unknown): value is Locale {
 
 export function localeFromCookie(value: string | undefined): Locale {
   return isLocale(value) ? value : defaultLocale;
+}
+
+export function getLocalePath(
+  locale: Locale,
+  section: PublicSection,
+  slug?: string
+): string {
+  const base =
+    section === "home" ? `/${locale}` : `/${locale}/${section}`;
+
+  return slug ? `${base}/${slug}` : base;
 }
