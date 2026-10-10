@@ -1,7 +1,8 @@
 import enMessages from "../../../messages/en.json";
 import viMessages from "../../../messages/vi.json";
+import NextLink from "next/link";
 import {OperatorObserver} from "@/components/home/operator-observer";
-import {Link} from "@/i18n/navigation";
+import {getLocalePath} from "@/i18n/locale";
 import type {Profile} from "@/lib/content/types";
 
 interface HeroProps {
@@ -12,7 +13,11 @@ export function Hero({profile}: HeroProps) {
   const copy = profile.locale === "vi" ? viMessages.hero : enMessages.hero;
 
   return (
-    <section className="hero section-rule" aria-labelledby="hero-title">
+    <section
+      id="introduction"
+      className="hero section-rule"
+      aria-labelledby="hero-title"
+    >
       <div className="editorial-grid hero__grid">
         <div className="hero__copy">
           <p className="hero__identity">
@@ -22,12 +27,12 @@ export function Hero({profile}: HeroProps) {
           <h1 id="hero-title">{profile.positioning}</h1>
           <p className="hero__introduction">{profile.introduction}</p>
           <div className="hero__actions">
-            <Link href="/writing" locale={profile.locale}>
+            <NextLink href={getLocalePath(profile.locale, "writing")}>
               {copy.writingAction}
-            </Link>
-            <Link href="/work" locale={profile.locale}>
+            </NextLink>
+            <NextLink href={getLocalePath(profile.locale, "work")}>
               {copy.workAction}
-            </Link>
+            </NextLink>
           </div>
         </div>
 
