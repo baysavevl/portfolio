@@ -1,0 +1,108 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "work": "Công việc",
+    "writing": "Bài viết",
+    "about": "Giới thiệu",
+    "resume": "Hồ sơ",
+    "menu": "Mở điều hướng",
+    "closeMenu": "Đóng điều hướng"
+  },
+  "hero": {
+    "operator": "Người vận hành",
+    "observer": "Người quan sát",
+    "rangeLabel": "Hiển thị Người vận hành hoặc Người quan sát",
+    "operatorAlt": "Hình bóng trừu tượng của Người vận hành",
+    "observerAlt": "Hình bóng trừu tượng của Người quan sát",
+    "splitAlt": "Hình bóng trừu tượng của Người vận hành và Người quan sát",
+    "writingAction": "Đọc ghi chép",
+    "workAction": "Khám phá công việc chọn lọc"
+  },
+  "home": {
+    "latestFieldNote": "Ghi chép mới nhất",
+    "currentQuestions": "Những câu hỏi hiện tại",
+    "selectedWork": "Công việc chọn lọc",
+    "careerPreview": "Hành trình nghề nghiệp",
+    "principles": "Nguyên tắc làm việc",
+    "contact": "Tiếp tục cuộc trò chuyện",
+    "readArticle": "Đọc {title}",
+    "viewProject": "Xem {title}"
+  },
+  "demo": {
+    "label": "Nội dung minh hoạ"
+  },
+  "writing": {
+    "title": "Bài viết",
+    "description": "Ghi chép về kiến tạo, lãnh đạo, học hỏi và sự chú tâm.",
+    "featured": "Nổi bật",
+    "allNotes": "Tất cả ghi chép",
+    "readingTime": "{minutes} phút đọc",
+    "publishedOn": "Đăng ngày {date}",
+    "related": "Ghi chép liên quan",
+    "back": "Quay lại Bài viết",
+    "empty": "Chưa có ghi chép nào được xuất bản bằng ngôn ngữ này.",
+    "tableOfContents": "Trong ghi chép này"
+  },
+  "work": {
+    "title": "Công việc",
+    "description": "Các case study minh hoạ được kể qua quyết định và suy ngẫm.",
+    "context": "Bối cảnh",
+    "role": "Vai trò",
+    "decisions": "Quyết định chính",
+    "outcome": "Kết quả",
+    "reflection": "Suy ngẫm",
+    "back": "Quay lại Công việc",
+    "empty": "Case study sẽ xuất hiện tại đây khi thông tin đã sẵn sàng để chia sẻ.",
+    "writingLink": "Xem Bài viết"
+  },
+  "about": {
+    "title": "Giới thiệu",
+    "principles": "Nguyên tắc làm việc",
+    "questions": "Những câu hỏi đang tiếp diễn",
+    "mindfulBuilding": "Kiến tạo có chánh niệm là gì",
+    "mindfulBuildingCopy": "Nội dung minh hoạ: kiến tạo có chánh niệm kết nối quyết định rõ ràng với đủ sự chú tâm để nhận ra tác động con người và ảnh hưởng dài hạn."
+  },
+  "resume": {
+    "title": "Hồ sơ",
+    "summary": "Tóm tắt",
+    "experience": "Kinh nghiệm",
+    "education": "Học vấn",
+    "capabilities": "Năng lực",
+    "download": "Tải {label}",
+    "effectiveDate": "Hiệu lực từ {date}",
+    "empty": "Lịch sử nghề nghiệp đã xác minh chưa được cung cấp."
+  },
+  "search": {
+    "label": "Tìm trong Bài viết",
+    "placeholder": "Tìm ghi chép",
+    "allTopics": "Tất cả chủ đề",
+    "results": "{count} kết quả",
+    "noResults": "Không có ghi chép phù hợp với bộ lọc hiện tại.",
+    "activeFilters": "Bộ lọc đang dùng: {filters}",
+    "reset": "Đặt lại bộ lọc"
+  },
+  "translation": {
+    "unavailable": "Nội dung này chưa có ở ngôn ngữ đã chọn.",
+    "backToCollection": "Xem nội dung hiện có"
+  },
+  "errors": {
+    "notFoundTitle": "Trang này không có trong ghi chép",
+    "notFoundDescription": "Địa chỉ có thể đã thay đổi hoặc nội dung chưa tồn tại bằng ngôn ngữ đã chọn.",
+    "runtimeTitle": "Trang đã bị gián đoạn",
+    "runtimeDescription": "Vui lòng thử lại. Không có thông tin chẩn đoán riêng tư nào được hiển thị tại đây.",
+    "tryAgain": "Thử lại",
+    "home": "Về trang chủ",
+    "writing": "Xem Bài viết",
+    "work": "Xem Công việc"
+  },
+  "footer": {
+    "brandLine": "Vincent Luu — The Mindful Builder"
+  },
+  "accessibility": {
+    "skipToContent": "Bỏ qua để đến nội dung chính",
+    "mainNavigation": "Điều hướng chính",
+    "mobileNavigation": "Điều hướng di động",
+    "localeSwitcher": "Ngôn ngữ",
+    "translationUnavailable": "Chưa có bản dịch"
+  }
+}
