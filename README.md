@@ -31,4 +31,14 @@ The Playwright suite builds and serves the production application on port 3101 s
 
 All current articles, case studies, and professional-history placeholders are demonstration records rather than factual claims about Vincent. Supply verified personal content before a production launch.
 
-The embedded Sanity Studio and independent English/Vietnamese publishing workflow are specified in [`docs/superpowers/plans/2026-10-10-sanity-publishing.md`](docs/superpowers/plans/2026-10-10-sanity-publishing.md).
+The embedded Sanity Studio supports independent English/Vietnamese publishing. Follow the [Sanity setup and publishing runbook](docs/runbooks/sanity-setup.md) to configure datasets, credentials, CORS, webhooks, Vercel, and the guarded development seed.
+
+Useful CMS commands:
+
+```bash
+npm run sanity:manage
+npm run sanity:schema:validate
+npm run sanity:seed:development
+```
+
+The seed command requires an explicit opt-in and refuses to write anywhere except the `development` dataset.
